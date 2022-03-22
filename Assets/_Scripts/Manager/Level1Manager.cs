@@ -34,15 +34,9 @@ namespace Manager
             CreatePlayer();
         }
 
-        private void Update()
-        {
-            //_uiManager.UpdateRank(1);
-        }
-
         private void OnDisable()
         {
             RunnerInputController.Click -= OnClicked;
-
             PoolOwner.ClearPool();
         }
 
