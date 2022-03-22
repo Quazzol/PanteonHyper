@@ -99,8 +99,10 @@ namespace AI
                     float rangeGap = range.Gap();
                     if (rangeGap >= _characterWidth)
                     {
+                        var lastObstacle = obstacles.Last();
                         var possibleTarget = range.Mid();
-                        var direction = new Vector3(possibleTarget, _movePosition.y, _movePosition.z) - _transform.position;
+                        var direction = new Vector3(possibleTarget, lastObstacle.transform.position.y, lastObstacle.transform.position.z) - _transform.position;
+
                         if (_rigidbody.SweepTest(direction, out var hit, direction.magnitude))
                         {
                             if (hit.transform.TryGetComponent<IObstacle>(out var obstacle))

@@ -136,11 +136,23 @@ namespace Character
             Die();
         }
 
+        private bool _fallingOver = false;
         private IEnumerator FallingOver()
         {
-            SetState(CharacterState.FallOver);
-            yield return _waiter;
-            Die();
+            if (_fallingOver)
+                yield break;
+
+            _fallingOver = true;
+            try
+            {
+                SetState(CharacterState.FallOver);
+                yield return _waiter;
+                Die();
+            }
+            finally
+            {
+                _fallingOver = false;
+            }
         }
     }
 }
